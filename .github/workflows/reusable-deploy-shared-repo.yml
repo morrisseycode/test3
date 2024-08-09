@@ -14,7 +14,7 @@ on:
         type: string
     secrets:
       someSecret:
-        required: true
+        required: false
     
 jobs:
 
@@ -29,11 +29,9 @@ jobs:
 
       - name: Print Location
         run: echo "Workflow stored in shared repo test3"
-
-      - name: Test secret value
-        run: echo "Value of passed secret matches known value: $SECRET_MATCH"
-        env:
-          SECRET_MATCH: ${{ secrets.someSecret == 'Some Value' }}
+      
+      - name: Secret Information
+        run: echo "Value of secret matches - ${{ secrets.someSecret == 'Some Value' }}"
       
       - name: Print name of App Service to deploy to
         run: echo "App will be deployed to ${{ inputs.app-name }}"
